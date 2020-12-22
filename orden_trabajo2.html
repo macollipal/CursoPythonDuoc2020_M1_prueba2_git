@@ -31,6 +31,15 @@
                                    if(key < 96 || key > 122)
                                    e.preventDefault();
                         }
+
+             function scheduleA(event) 
+                {
+                let precio= parseInt(this.options[this.selectedIndex].value)
+                var iva =(precio * 19)/100
+                var total= precio + iva
+                txtTotal.value=total
+                alert(txtNombre.value +', el precio es: ' + precio  +'\n '+ 'Iva: ' + iva +'\n '+ 'Total: ' + total);
+                }        
         </script>
     </head>
 
@@ -64,7 +73,7 @@
             <form method="post">
  
                 <section id="registro">
-                    <h2>Registro Cliente</h2>
+                    <h2>Orden de Trabajo</h2>
                     <div class="form-group">
                     <div class="row">
 
@@ -87,7 +96,7 @@
                     <div class="row">
                         <div class="contenedor"><h5>Nombre</h5></div>
                         <div class="contenedor">
-                            <input class="controls" type="text " name="txtNombre " class="form-control " placeholder="Ej: Fabián" onkeypress="sololetras(event);" pattern="[A-Za-z]+" title="letters only" maxlength="50" required>
+                            <input class="controls" type="text " id="txtNombre" name="txtNombre " class="form-control " placeholder="Ej: Fabián" onkeypress="sololetras(event);" pattern="[A-Za-z]+" title="letters only" maxlength="50" required>
                      
                         </div>
                     </div>
@@ -183,7 +192,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Revisión Técnica al día</h5></div>
+                        <div class="contenedor"><h5>Revisión Técnica al día</h5></div>
                         <div class="contenedor form-control" >
                             <input type="radio" name="rdoaldia" value="1">Si
                             <input type="radio" name="rdoaldia" value="2">No
@@ -203,12 +212,18 @@
                         <div class="row">
                             <div class="contenedor"><h5>Tipo Lavado</h5></div>
                             <div class="contenedor">
-                                <select name="Comuna"> 
+                                <select name="Comuna" onchange="scheduleA.call(this, event)"> 
                                     <option value="0">Seleccionar Tipo Lavado</option>
-                                    <option value="1">Exterior($5000)</option>
-                                    <option value="2">Motor($8000)</option>
+                                    <option value="5000">Exterior($5000)</option>
+                                    <option value="8000">Motor($8000)</option>
                                     
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row">       
+                            <div class="contenedor"><h5>Total</h5></div>
+                            <div class="contenedor">
+                                <input class="controls" type="text" id="txtTotal" name="txtTotal" placeholder="" >
                             </div>
                         </div>
                     <!-- </div> -->

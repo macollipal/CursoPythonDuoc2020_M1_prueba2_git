@@ -5,6 +5,7 @@
         <title>Registro de CLientes "Super CLEAN"</title>
         <link rel="stylesheet" href="css/estilos.css"></link>
         <link rel="stylesheet" href="css/fontello.css"></link>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script>
             function solonumeros(e)
                         {
@@ -18,7 +19,7 @@
             var key = window.event ? e.which : e.keyCode;
                             if (key < 75 || key > 75) 
                                 if (key < 107 || key > 107) 
-                                   if(key < 48 || key > 57 || this.value.length == 1)
+                                   if(key < 48 || key > 57)
                                    e.preventDefault();
                         }
 
@@ -30,9 +31,23 @@
                                    if(key < 96 || key > 122)
                                    e.preventDefault();
                         }
+
+             function scheduleA(event) 
+                {
+                let precio= parseInt(this.options[this.selectedIndex].value)
+                var iva =(precio * 19)/100
+                var total= precio + iva
+                txtTotal.value=total
+                alert(txtNombre.value +', el precio es: ' + precio  +'\n '+ 'Iva: ' + iva +'\n '+ 'Total: ' + total);
+                }        
         </script>
     </head>
+
     <body>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
         <header>
             <div class="contenedor">
                 <h1 class="icon-cab">Lavado De Autos</h1>
@@ -44,6 +59,7 @@
                 </nav>
             </div>
         </header>
+
         <main>
             <section id="banner">
                  <img src="img/banner.jpg">
@@ -53,42 +69,60 @@
                      <a href="#">Leer más</a>
                  </div>
             </section>
-            
-            <section id="registro">
-                <h2>Registro Cliente</h2>
-                <div class="offset-sm-2">
+
+            <form method="post">
+ 
+                <section id="registro">
+                    <h2>Orden de Trabajo</h2>
+                    <div class="form-group">
                     <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Rut</h5></div>
-                        <div class="contenedor">
-                        <form >
-                            <table>
-                                <th>
-                                <td> <input class="controls" type="text" name="Rut" placeholder="12345678" onkeypress="solonumeros(event);"></td>
-                                <th><h3>-</h3></td>
-                                    <td><input class="controls" type="text" name="Digito"  placeholder="k" onkeypress="solonumeros_y_kK(event);"></td>
-                                </th>
-                            </table>
-                        </form>
-                        </div>
+
+                    <div class="contenedor"> 
+                        <h5>Rut</h5>
                     </div>
-                    <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Nombre</h5></div>
-                        <div class="contenedor">
-                            <input class="controls" type="text " name="txtNombre " class="form-control " placeholder="Ej: Fabián Alarcón" onkeypress="sololetras(event);">
-                        </div>
+                    <div class="contenedor">
+                    <!-- <form > //-->
+                        <table>
+                            <th>
+                            <td> <input class="controls" type="text" name="Rut" placeholder="12345678" onkeypress="solonumeros(event);" maxlength="8" pattern="^\d{8$" title="8 dígitos" required></td>
+                            <th><h3>-</h3></td>
+                            <td><input class="controls" type="text" name="Digito"  pattern="^\c{1}$" title="Solo 1 caracter" required placeholder="k" onkeypress="solonumeros_y_kK(event);" maxlength="1"></td>
+                            </th>
+                        </table>
+                        <!-- </form>//-->
                     </div>
+                    </div>
+                    
                     <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Direción</h5></div>
+                        <div class="contenedor"><h5>Nombre</h5></div>
                         <div class="contenedor">
-                            <input class="controls" type="text " name="txtDireccion" class="form-control " placeholder="Ej: Los Rubies 456" pattern="[A-Za-z]+" title="letters only" required>
+                            <input class="controls" type="text " id="txtNombre" name="txtNombre " class="form-control " placeholder="Ej: Fabián" onkeypress="sololetras(event);" pattern="[A-Za-z]+" title="letters only" maxlength="50" required>
+                     
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Comuna</h5></div>
+                        <div class="contenedor"><h5>Apellido</h5></div>
                         <div class="contenedor">
-                            <select name="Comuna"> 
-                                <option value="0">seleccionar</option>
+                            <input class="controls" type="text " name="txtApellido " class="form-control " placeholder="Ej: Perez" onkeypress="sololetras(event);" pattern="[A-Za-z]+" title="letters only" maxlength="50" required>
+                             <!-- <th><h3> </h3></td> -->
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="contenedor"><h5>Direción</h5></div>
+                        <div class="contenedor">
+                            <input class="controls" type="text " name="txtDireccion" class="form-control " placeholder="Ej: Los Rubies 456" pattern="[A-Za-z0-9 ]+" title="letters only"  maxlength="100" required>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="contenedor"><h5>Comuna</h5></div>
+                        <div class="contenedor">
+                            <select name="Comuna" > 
+                                <option value="">Seleccionar</option>
                                 <option value="1">Providencia</option>
                                 <option value="2">Macul</option>
                                 <option value="3">Ñuñoa</option>
@@ -107,12 +141,12 @@
             <section id="registro">
                 <h2></a>Registro Vehiculo</h2>
               
-                <div class="contenedor">
+               <!-- <div class="offset-sm-2">-->
                     <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Tipo Vehiculo</h5></div>
+                        <div class="contenedor"><h5>Tipo Vehiculo</h5></div>
                         <div class="contenedor">
-                            <select  name="Tipo Vehiculo"> 
-                                <option value="0">Seleccionar Tipo</option>
+                            <select  name="Tipo Vehiculo" required> 
+                                <option value="">Seleccionar Tipo</option>
                                 <option value="1">Furgón</option>
                                 <option value="2">Auto</option>
                                 <option value="3">Camión</option>
@@ -120,12 +154,13 @@
                                 <option value="5">Moto</option>
                             </select>
                         </div>
-                    </div>
+                  </div> 
+                 <!-- <form > //--
                     <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Marca</h5></div>
+                        <div class="contenedor"><h5>Marca</h5></div>
                         <div class="contenedor">
-                            <select  name="Marca"> 
-                                <option value="0">seleccionar Marca</option>
+                            <select  name="Marca" required> 
+                                <option value="">seleccionar Marca</option>
                                 <option value="1">Kia</option>
                                 <option value="2">Audi</option>
                                 <option value="3">Mitsubishi</option>
@@ -134,23 +169,30 @@
                             </select>
                         </div>
                     </div>
-
+                    //-->
                     <div class="row">       
-                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Modelo</h5></div>
+                        <div class="contenedor"><h5>Marca</h5></div>
                         <div class="contenedor">
-                            <input class="controls" type="text" name="txtModelo" placeholder="Modelo...">
+                            <input class="controls" type="text" name="txtMarca" placeholder="Marca..."onkeypress="sololetras(event);"maxlength="20" required>
                         </div>
                     </div>
 
                     <div class="row">       
-                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Año</h5></div>
+                        <div class="contenedor"><h5>Modelo</h5></div>
                         <div class="contenedor">
-                            <input class="controls" type="text" name="txtAnno" placeholder="1990...">
+                            <input class="controls" type="text" name="txtModelo" placeholder="Modelo..."onkeypress="sololetras(event);"maxlength="20" required>
+                        </div>
+                    </div>
+
+                    <div class="row">       
+                        <div class="contenedor"><h5>Año</h5></div>
+                        <div class="contenedor">
+                            <input class="controls" type="text" name="txtAnno" placeholder="1990..." onkeypress="solonumeros(event);"maxlength="4" required>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Revisión Técnica al día</h5></div>
+                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Revisión Técnica al día</h5></div>
                         <div class="contenedor form-control" >
                             <input type="radio" name="rdoaldia" value="1">Si
                             <input type="radio" name="rdoaldia" value="2">No
@@ -159,33 +201,75 @@
                     </div>
                 </div>
             </section>
+
+
+
+
             
             <section id="registro">
                 <h2>Tipo Servicio </h2>
-                <div class="contenedor">
-                    <div class="row">
-                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Comuna</h5></div>
-                        <div class="contenedor">
-                            <select name="Comuna"> 
-                                <option value="0">Seleccionar Tipo Lavado</option>
-                                <option value="1">Exterior($5000)</option>
-                                <option value="2">Motor($8000)</option>
-                                
-                            </select>
+                    <!--  <div class="col-12 col-sm-4 col-lg-3  col-xl-2"> -->
+                        <div class="row">
+                            <div class="contenedor"><h5>Tipo Lavado</h5></div>
+                            <div class="contenedor">
+                                <select name="Comuna" onchange="scheduleA.call(this, event)"> 
+                                    <option value="0">Seleccionar Tipo Lavado</option>
+                                    <option value="5000">Exterior($5000)</option>
+                                    <option value="8000">Motor($8000)</option>
+                                    
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="row">       
+                            <div class="contenedor"><h5>Total</h5></div>
+                            <div class="contenedor">
+                                <input class="controls" type="text" id="txtTotal" name="txtTotal" placeholder="" >
+                            </div>
+                        </div>
+                    <!-- </div> -->
             </section>
-
-
-
+            
+<!-- <form > //--
             <div class="row">
-                <div class="col-12 col-sm-4 col-lg-3 col-xl-2"></div>
+                <div class="contenedor"></div>
                 <div class="contenedor">
+                    <div class="contenedor form-control">
                     <button type="button" class="btn btn-primary">Limpiar</button>
                     <button type="button" class="btn btn-danger">Grabar</button>
                 </div>
             </div>
+//-->
+            <input type="submit">
+ <!-- Button trigger modal -->
+ <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button> -->
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+              <div>
+                  <h5>El Total es: </h5>
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+        </form>
         </main>
     </body>
 </html>
