@@ -1,0 +1,191 @@
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Registro de CLientes "Super CLEAN"</title>
+        <link rel="stylesheet" href="css/estilos.css"></link>
+        <link rel="stylesheet" href="css/fontello.css"></link>
+        <script>
+            function solonumeros(e)
+                        {
+            var key = window.event ? e.which : e.keyCode;
+                            if(key < 48 || key > 57)
+                                e.preventDefault();
+                        }
+
+            function solonumeros_y_kK(e)
+                        {
+            var key = window.event ? e.which : e.keyCode;
+                            if (key < 75 || key > 75) 
+                                if (key < 107 || key > 107) 
+                                   if(key < 48 || key > 57 || this.value.length == 1)
+                                   e.preventDefault();
+                        }
+
+            function sololetras(e)
+                        {
+            var key = window.event ? e.which : e.keyCode;
+                            if (key < 65 || key > 90) 
+                                
+                                   if(key < 96 || key > 122)
+                                   e.preventDefault();
+                        }
+        </script>
+    </head>
+    <body>
+        <header>
+            <div class="contenedor">
+                <h1 class="icon-cab">Lavado De Autos</h1>
+                <input type="checkbox" id="menu-bar">
+                <label class="icon-menu" for=menu-bar></label>
+                <nav class="menu">
+                    <a href="prueba21122020.html">Volver</a>
+      
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section id="banner">
+                 <img src="img/banner.jpg">
+                 <div class="contenedor">
+                     <h2>Tu auto más limpio</h2>
+                     <p>¿Lavado con agua mineral o redbull?</p>
+                     <a href="#">Leer más</a>
+                 </div>
+            </section>
+            
+            <section id="registro">
+                <h2>Registro Cliente</h2>
+                <div class="offset-sm-2">
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Rut</h5></div>
+                        <div class="contenedor">
+                        <form >
+                            <table>
+                                <th>
+                                <td> <input class="controls" type="text" name="Rut" placeholder="12345678" onkeypress="solonumeros(event);"></td>
+                                <th><h3>-</h3></td>
+                                    <td><input class="controls" type="text" name="Digito"  placeholder="k" onkeypress="solonumeros_y_kK(event);"></td>
+                                </th>
+                            </table>
+                        </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Nombre</h5></div>
+                        <div class="contenedor">
+                            <input class="controls" type="text " name="txtNombre " class="form-control " placeholder="Ej: Fabián Alarcón" onkeypress="sololetras(event);">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Direción</h5></div>
+                        <div class="contenedor">
+                            <input class="controls" type="text " name="txtDireccion" class="form-control " placeholder="Ej: Los Rubies 456" pattern="[A-Za-z]+" title="letters only" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Comuna</h5></div>
+                        <div class="contenedor">
+                            <select name="Comuna"> 
+                                <option value="0">seleccionar</option>
+                                <option value="1">Providencia</option>
+                                <option value="2">Macul</option>
+                                <option value="3">Ñuñoa</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+               
+            
+            
+                    
+                </div>
+            </section>
+
+            <section id="registro">
+                <h2></a>Registro Vehiculo</h2>
+              
+                <div class="contenedor">
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Tipo Vehiculo</h5></div>
+                        <div class="contenedor">
+                            <select  name="Tipo Vehiculo"> 
+                                <option value="0">Seleccionar Tipo</option>
+                                <option value="1">Furgón</option>
+                                <option value="2">Auto</option>
+                                <option value="3">Camión</option>
+                                <option value="4">Camioneta</option>
+                                <option value="5">Moto</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Marca</h5></div>
+                        <div class="contenedor">
+                            <select  name="Marca"> 
+                                <option value="0">seleccionar Marca</option>
+                                <option value="1">Kia</option>
+                                <option value="2">Audi</option>
+                                <option value="3">Mitsubishi</option>
+                                <option value="4">Volvo</option>
+                                <option value="5">Samsung</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">       
+                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Modelo</h5></div>
+                        <div class="contenedor">
+                            <input class="controls" type="text" name="txtModelo" placeholder="Modelo...">
+                        </div>
+                    </div>
+
+                    <div class="row">       
+                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Año</h5></div>
+                        <div class="contenedor">
+                            <input class="controls" type="text" name="txtAnno" placeholder="1990...">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-lg-3  col-xl-2"><h5>Revisión Técnica al día</h5></div>
+                        <div class="contenedor form-control" >
+                            <input type="radio" name="rdoaldia" value="1">Si
+                            <input type="radio" name="rdoaldia" value="2">No
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="registro">
+                <h2>Tipo Servicio </h2>
+                <div class="contenedor">
+                    <div class="row">
+                        <div class="col-12 col-sm-4 col-lg-3 col-xl-2"><h5>Comuna</h5></div>
+                        <div class="contenedor">
+                            <select name="Comuna"> 
+                                <option value="0">Seleccionar Tipo Lavado</option>
+                                <option value="1">Exterior($5000)</option>
+                                <option value="2">Motor($8000)</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <div class="row">
+                <div class="col-12 col-sm-4 col-lg-3 col-xl-2"></div>
+                <div class="contenedor">
+                    <button type="button" class="btn btn-primary">Limpiar</button>
+                    <button type="button" class="btn btn-danger">Grabar</button>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
